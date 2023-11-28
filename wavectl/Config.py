@@ -1,13 +1,12 @@
 
 
-from __future__ import absolute_import
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 
-import os
 import json
+import os
+from builtins import input
 
 from .BaseCommand import BaseCommand
-from builtins import input
 
 
 class ConfigCommand(BaseCommand):
@@ -19,7 +18,7 @@ class ConfigCommand(BaseCommand):
         api key to use and the default tags if the user wants to narrow down
         her requests with some tags by default"""
 
-        h = input("Wavefront host url: ")
+        h = input("Wavefront host url: ").rstrip('/')
         token = input("Api token: ")
 
         self.config = {
