@@ -1,3 +1,0 @@
-[submodule "test/.Makefile.test"]
-	path = test/.Makefile.test
-	url = https://github.com/box/Makefile.test.git
