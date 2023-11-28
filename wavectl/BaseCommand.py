@@ -1,10 +1,10 @@
 
-from __future__ import absolute_import
-from __future__ import print_function
+from __future__ import absolute_import, print_function
+
+import errno
 import json
 import os
 import threading
-import errno
 
 
 class ConfigError(Exception):
@@ -61,7 +61,9 @@ class BaseCommand(object):
         speficied. A config must have a wavefrontHost and an apiToken raise
         an exception if none of them exist"""
 
-        if self.config.get(self.wavefrontHostKey) is None:
+        if self.config.get(self.wavefrontHostKey):
+            self.config[self.wavefrontHostKey] = self.config.get(self.wavefrontHostKey).rstrip('/')
+        else:
             raise ConfigError(
                 ("The wavefront host url is not known. Either execute "
                  "`wavectl config ...` or pass {0} command line option").format(
